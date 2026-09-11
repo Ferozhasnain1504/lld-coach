@@ -95,6 +95,7 @@ Each attempt can be opened to view the original submission and its evaluation.
 - Google Gemini API
 
 ## Project Structure
+```
 lld-coach/
 ├── app/
 │   ├── api/
@@ -126,6 +127,7 @@ lld-coach/
 ├── AI_USAGE.md
 ├── package.json
 └── README.md
+```
 
 ## Getting Started
 
