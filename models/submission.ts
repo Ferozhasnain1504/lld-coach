@@ -32,6 +32,10 @@ export interface ISubmission extends Document {
     strengths: string[];
     improvements: string[];
 
+    evidence: string[];
+
+    actionableSuggestions: string[];
+
     evaluatedAt: Date;
   };
 
@@ -101,7 +105,8 @@ const SubmissionSchema = new Schema<ISubmission>(
 
       strengths: [String],
       improvements: [String],
-
+      evidence: [String],
+      actionableSuggestions: [String],
       evaluatedAt: Date,
     },
   },
