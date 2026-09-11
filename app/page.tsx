@@ -1,69 +1,131 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const problems = [
+  {
+    title: "Parking Lot",
+    difficulty: "Medium",
+    description:
+      "Design a parking lot system that supports multiple floors, vehicle types, parking spots, tickets, and payments.",
+    tags: ["OOP", "SOLID", "Design Patterns"],
+  },
+  {
+    title: "Elevator System",
+    difficulty: "Hard",
+    description:
+      "Design an elevator system that handles multiple elevators, floor requests, scheduling, and movement.",
+    tags: ["OOP", "State", "Strategy"],
+  },
+  {
+    title: "Vending Machine",
+    difficulty: "Easy",
+    description:
+      "Design a vending machine that supports products, payments, inventory management, and change.",
+    tags: ["OOP", "State", "Encapsulation"],
+  },
+  {
+    title: "Splitwise",
+    difficulty: "Medium",
+    description:
+      "Design an expense-sharing system where users can create expenses and track balances.",
+    tags: ["OOP", "Strategy", "Collections"],
+  },
+  {
+    title: "Library Management",
+    difficulty: "Medium",
+    description:
+      "Design a library system that manages books, members, borrowing, returning, and availability.",
+    tags: ["OOP", "SOLID", "Abstraction"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <header className="border-b border-slate-800">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <div>
+            <h1 className="text-2xl font-bold">LLD Coach</h1>
+            <p className="text-sm text-slate-400">
+              Practice. Design. Improve.
+            </p>
+          </div>
+
+          <button className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800">
+            My Attempts
+          </button>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="max-w-3xl">
+          <p className="mb-3 text-sm font-medium text-blue-400">
+            LOW-LEVEL DESIGN PRACTICE
+          </p>
+
+          <h2 className="text-5xl font-bold tracking-tight">
+            Design better systems.
+            <br />
+            Understand why.
+          </h2>
+
+          <p className="mt-6 text-lg leading-8 text-slate-400">
+            Practice real-world LLD problems, submit your design, and receive
+            structured feedback on your responsibilities, abstractions,
+            coupling, and extensibility.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Problems */}
+      <section className="mx-auto max-w-7xl px-6 pb-20">
+        <div className="mb-8">
+          <h3 className="text-2xl font-semibold">Choose a problem</h3>
+          <p className="mt-2 text-slate-400">
+            Pick a problem and start designing.
+          </p>
         </div>
-      </main>
-    </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {problems.map((problem) => (
+            <div
+              key={problem.title}
+              className="flex flex-col rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-slate-600"
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <span className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">
+                  {problem.difficulty}
+                </span>
+              </div>
+
+              <h4 className="text-xl font-semibold">{problem.title}</h4>
+
+              <p className="mt-3 flex-1 text-sm leading-6 text-slate-400">
+                {problem.description}
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                {problem.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-md bg-slate-800 px-2 py-1 text-xs text-slate-400"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                href="/problems/parking-lot"
+                className="mt-6 w-full rounded-lg bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-200"
+              >
+                Practice →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
