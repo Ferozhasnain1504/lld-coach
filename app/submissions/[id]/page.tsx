@@ -298,7 +298,7 @@ export default async function SubmissionPage({
               <div className="mt-5 space-y-3">
                 {evaluation.strengths.length > 0 ? (
                   evaluation.strengths.map(
-                    (strength, index) => (
+                    (strength: string, index: number) => (
                       <div
                         key={index}
                         className="flex gap-3"
@@ -331,7 +331,7 @@ export default async function SubmissionPage({
               <div className="mt-5 space-y-3">
                 {evaluation.improvements.length > 0 ? (
                   evaluation.improvements.map(
-                    (improvement, index) => (
+                    (improvement: string, index: number) => (
                       <div
                         key={index}
                         className="flex gap-3"
@@ -367,7 +367,7 @@ export default async function SubmissionPage({
 
               <div className="mt-5 space-y-3">
                 {evaluation.evidence && evaluation.evidence.length > 0 ? (
-                  evaluation.evidence.map((item, index) => (
+                  evaluation.evidence.map((item: string, index: number) => (
                     <div
                       key={index}
                       className="flex gap-3"
@@ -403,7 +403,7 @@ export default async function SubmissionPage({
             <div className="mt-5 space-y-3">
                 {evaluation.actionableSuggestions &&
                 evaluation.actionableSuggestions.length > 0 ? (
-                evaluation.actionableSuggestions.map((suggestion, index) => (
+                evaluation.actionableSuggestions.map((suggestion: string, index: number) => (
                     <div
                     key={index}
                     className="flex gap-3"
