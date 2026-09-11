@@ -85,6 +85,25 @@ The history page displays:
 
 Each attempt can be opened to view the original submission and its evaluation.
 
+## Screenshots
+
+### 1. Home Page
+![Home Page](public/screenshots/home.png)
+
+### 2. Problem Details
+![Problem Details](public/screenshots/problem.png)
+
+### 3. Practice / Submission
+![Practice Page](public/screenshots/practice.png)
+
+### 4. AI Evaluation
+![AI Evaluation](public/screenshots/evaluation_1.png)
+![AI Evaluation](public/screenshots/evaluation_2.png)
+
+### 5. Attempt History
+![Attempt History](public/screenshots/history.png)
+
+
 ## Tech Stack
 - Next.js
 - React
