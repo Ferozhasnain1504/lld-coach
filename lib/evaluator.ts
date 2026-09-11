@@ -250,6 +250,10 @@ for (let attempt = 0; attempt < 3; attempt++) {
   }
 }
 
+  if (!response) {
+  throw new Error("Gemini did not return a response.");
+}
+
   if (!response.text) {
     throw new Error("Gemini returned an empty response.");
   }
