@@ -51,9 +51,12 @@ export default function Home() {
             </p>
           </div>
 
-          <button className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800">
+          <Link
+            href="/history"
+            className="rounded-lg border border-slate-700 px-4 py-2 text-sm hover:bg-slate-800"
+          >
             My Attempts
-          </button>
+          </Link>
         </div>
       </header>
 
@@ -116,12 +119,21 @@ export default function Home() {
                 ))}
               </div>
 
-              <Link
-                href="/problems/parking-lot"
-                className="mt-6 w-full rounded-lg bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-200"
-              >
-                Practice →
-              </Link>
+              {problem.title === "Parking Lot" ? (
+                <Link
+                  href="/problems/parking-lot"
+                  className="mt-6 w-full rounded-lg bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-200"
+                >
+                  Practice →
+                </Link>
+              ) : (
+                <button
+                  disabled
+                  className="mt-6 w-full cursor-not-allowed rounded-lg border border-slate-700 px-4 py-3 text-center text-sm font-semibold text-slate-500"
+                >
+                  Coming Soon
+                </button>
+              )}
             </div>
           ))}
         </div>
