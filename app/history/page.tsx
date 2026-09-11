@@ -36,8 +36,13 @@ export default async function HistoryPage() {
 
         {submissions.length === 0 ? (
           <div className="border border-slate-800 rounded-xl p-8 text-center">
-            <p className="text-slate-400">
+            <p className="text-slate-300 text-lg">
               No attempts yet.
+            </p>
+
+            <p className="text-slate-500 mt-2 max-w-md mx-auto">
+              Start with the Parking Lot problem and submit your first
+              LLD design to receive AI-powered feedback.
             </p>
 
             <Link
