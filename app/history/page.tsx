@@ -67,7 +67,17 @@ export default async function HistoryPage() {
 
                   <p className="text-sm mt-3">
                     Status:{" "}
-                    <span className="text-green-400">
+                    <span
+                      className={
+                        submission.status === "COMPLETED"
+                          ? "text-green-400"
+                          : submission.status === "EVALUATING"
+                          ? "text-blue-400"
+                          : submission.status === "FAILED"
+                          ? "text-red-400"
+                          : "text-yellow-400"
+                      }
+                    >
                       {submission.status}
                     </span>
                   </p>
