@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI in .env.local");
-}
-
-let cached = (global as typeof globalThis & {
-  mongoose?: {
-    conn: typeof mongoose | null;
-    promise: Promise<typeof mongoose> | null;
-  };
-}).mongoose;
+let cached = (
+  global as typeof globalThis & {
+    mongoose?: {
+      conn: typeof mongoose | null;
+      promise: Promise<typeof mongoose> | null;
+    };
+  }
+).mongoose;
 
 if (!cached) {
   cached = {
@@ -19,9 +15,11 @@ if (!cached) {
     promise: null,
   };
 
-  (global as typeof globalThis & {
-    mongoose?: typeof cached;
-  }).mongoose = cached;
+  (
+    global as typeof globalThis & {
+      mongoose?: typeof cached;
+    }
+  ).mongoose = cached;
 }
 
 export async function connectDB() {
@@ -30,7 +28,13 @@ export async function connectDB() {
   }
 
   if (!cached!.promise) {
-    cached!.promise = mongoose.connect(MONGODB_URI);
+    const mongoUri = process.env.MONGODB_URI;
+
+    if (!mongoUri) {
+      throw new Error("Please define MONGODB_URI in .env.local");
+    }
+
+    cached!.promise = mongoose.connect(mongoUri);
   }
 
   cached!.conn = await cached!.promise;
