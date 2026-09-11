@@ -51,7 +51,7 @@ export async function POST(
     await submission.save();
 
     try {
-      const result = evaluateSubmission({
+      const result = await evaluateSubmission({
         classes: submission.classes,
         responsibilities: submission.responsibilities,
         relationships: submission.relationships,
@@ -60,7 +60,18 @@ export async function POST(
       });
 
       submission.evaluation = {
-        ...result,
+        overallScore: result.overallScore,
+
+        criteria: result.criteria,
+
+        strengths: result.strengths,
+
+        improvements: result.improvements,
+
+        evidence: result.evidence,
+
+        actionableSuggestions: result.actionableSuggestions,
+
         evaluatedAt: new Date(),
       };
 

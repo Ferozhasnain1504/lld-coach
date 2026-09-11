@@ -30,7 +30,7 @@ const evaluationSchema = {
   properties: {
     overallScore: {
       type: "integer",
-      description: "Overall LLD score from 1 to 10."
+      description: "Overall LLD score from 1 to 10.",
     },
 
     criteria: {
@@ -38,32 +38,32 @@ const evaluationSchema = {
       properties: {
         requirementUnderstanding: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         responsibilities: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         couplingCohesion: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         abstraction: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         extensibility: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         edgeCases: {
           type: "integer",
-          description: "Score from 1 to 10."
+          description: "Score from 1 to 10.",
         },
         explanation: {
           type: "integer",
-          description: "Score from 1 to 10."
-        }
+          description: "Score from 1 to 10.",
+        },
       },
       required: [
         "requirementUnderstanding",
@@ -72,39 +72,44 @@ const evaluationSchema = {
         "abstraction",
         "extensibility",
         "edgeCases",
-        "explanation"
-      ]
+        "explanation",
+      ],
     },
 
     strengths: {
       type: "array",
       items: {
-        type: "string"
+        type: "string",
       },
-      description: "Specific strengths supported by the submission."
+      description: "Specific strengths supported by the submission.",
     },
 
     improvements: {
       type: "array",
       items: {
-        type: "string"
+        type: "string",
       },
-      description: "Specific actionable improvements."
-    }
-  },
-  evidence: {
-        type: "array",
-        items: {
-            type: "string",
-        },
+      description: "Specific actionable improvements.",
+    },
+
+    evidence: {
+      type: "array",
+      items: {
+        type: "string",
+      },
+      description:
+        "Specific observations directly grounded in the student's submitted design.",
     },
 
     actionableSuggestions: {
-        type: "array",
-        items: {
-            type: "string",
-        },
+      type: "array",
+      items: {
+        type: "string",
+      },
+      description:
+        "Concrete changes the student can make to improve their design.",
     },
+  },
 
   required: [
     "overallScore",
@@ -112,8 +117,8 @@ const evaluationSchema = {
     "strengths",
     "improvements",
     "evidence",
-    "actionableSuggestions"
-  ]
+    "actionableSuggestions",
+  ],
 };
 
 export async function evaluateSubmission(

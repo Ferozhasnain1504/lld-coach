@@ -256,6 +256,77 @@ export default async function SubmissionPage({
                 )}
               </div>
             </section>
+            
+            {/* Evidence */}
+            <section className="border border-slate-800 bg-slate-900 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold">
+                Evidence From Your Design
+              </h2>
+
+              <p className="text-slate-400 mt-2">
+                The AI evaluator identified these observations directly from
+                your submitted design.
+              </p>
+
+              <div className="mt-5 space-y-3">
+                {evaluation.evidence && evaluation.evidence.length > 0 ? (
+                  evaluation.evidence.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex gap-3"
+                    >
+                      <span className="text-blue-400">
+                        •
+                      </span>
+
+                      <p className="text-slate-300">
+                        {item}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-slate-400">
+                    No evidence was provided for this evaluation.
+                  </p>
+                )}
+              </div>
+            </section>
+
+            {/* Actionable Suggestions */}
+
+            <section className="border border-slate-800 bg-slate-900 rounded-2xl p-8">
+            <h2 className="text-2xl font-bold">
+                Actionable Suggestions
+            </h2>
+
+            <p className="text-slate-400 mt-2">
+                Concrete changes you can make to improve your LLD.
+            </p>
+
+            <div className="mt-5 space-y-3">
+                {evaluation.actionableSuggestions &&
+                evaluation.actionableSuggestions.length > 0 ? (
+                evaluation.actionableSuggestions.map((suggestion, index) => (
+                    <div
+                    key={index}
+                    className="flex gap-3"
+                    >
+                    <span className="text-purple-400">
+                        →
+                    </span>
+
+                    <p className="text-slate-300">
+                        {suggestion}
+                    </p>
+                    </div>
+                ))
+                ) : (
+                <p className="text-slate-400">
+                    No actionable suggestions were provided for this evaluation.
+                </p>
+                )}
+            </div>
+            </section>
 
             {/* Actions */}
 

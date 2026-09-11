@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import { Submission } from "@/models/submission";
+import { validateSubmission } from "@/lib/validation";
 
 export async function POST(request: Request) {
   try {
@@ -33,6 +34,24 @@ export async function POST(request: Request) {
         {
           status: 400,
         }
+      );
+    }
+
+    const validation = validateSubmission({
+      classes,
+      responsibilities,
+      relationships,
+      assumptions,
+      explanation,
+    });
+
+    if (!validation.valid) {
+      return NextResponse.json(
+        {
+          error: "Submission validation failed.",
+          details: validation.errors,
+        },
+        { status: 400 }
       );
     }
 
