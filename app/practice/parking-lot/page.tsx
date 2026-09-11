@@ -56,9 +56,7 @@ export default function ParkingLotPracticePage() {
         return;
       }
 
-      alert(
-        `Evaluation complete! Score: ${evaluationData.evaluation.overallScore}/10`
-      );
+      window.location.href = `/submissions/${data.submissionId}`;
     } catch (error) {
       console.error(error);
       alert("Unable to submit. Please try again.");
