@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 
@@ -11,9 +9,10 @@ export default function ParkingLotPracticePage() {
   const [relationships, setRelationships] = useState("");
   const [assumptions, setAssumptions] = useState("");
   const [explanation, setExplanation] = useState("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setIsSubmitting(true);
 
   try {
     const response = await fetch("/api/submissions", {
@@ -63,6 +62,8 @@ export default function ParkingLotPracticePage() {
     } catch (error) {
       console.error(error);
       alert("Unable to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
   return (
@@ -299,9 +300,10 @@ ParkingLot assigns a ParkingSpot to a Vehicle.`}
 
               <button
                 type="submit"
-                className="rounded-lg bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
+                disabled={isSubmitting}
+                className="rounded-lg bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Submit Design →
+                {isSubmitting ? "Evaluating..." : "Submit Design →"}
               </button>
             </div>
           </form>
