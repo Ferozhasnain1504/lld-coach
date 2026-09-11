@@ -1,36 +1,194 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LLD Coach
+
+LLD Coach is an MVP platform for practicing Low-Level Design (LLD) problems and receiving structured feedback on submitted designs.
+
+The platform allows learners to:
+
+- Choose an LLD problem
+- Read the problem requirements
+- Submit a structured design
+- Receive AI-powered evaluation
+- Review rubric-based feedback
+- See evidence from their submitted design
+- Get actionable improvement suggestions
+- View previous attempts and scores
+
+## Features
+
+### 1. LLD Problem Practice
+
+Currently supported:
+
+- Parking Lot
+
+Additional problems such as Elevator System, Vending Machine, Splitwise, and Library Management are planned.
+
+### 2. Structured LLD Submission
+
+Learners submit:
+
+- Classes / Entities
+- Responsibilities
+- Relationships
+- Assumptions / Edge Cases
+- Design Explanation
+
+### 3. Deterministic Validation
+
+Before AI evaluation, the backend validates that the required submission fields are present.
+
+### 4. AI-Powered Evaluation
+
+The platform uses Google's Gemini API to evaluate the submitted design across seven dimensions:
+
+1. Requirement Understanding
+2. Class Responsibilities
+3. Coupling & Cohesion
+4. Abstraction
+5. Extensibility
+6. Edge Cases
+7. Explanation Quality
+
+The evaluator returns:
+
+- Overall score
+- Rubric breakdown
+- Strengths
+- Improvements
+- Evidence from the submitted design
+- Actionable suggestions
+
+### 5. Evaluation Status
+
+Submissions follow this flow:
+
+```text
+SUBMITTED
+    ↓
+EVALUATING
+    ↓
+COMPLETED
+    or
+FAILED
+```
+### 6. Attempt History
+
+Previous attempts are stored and can be reviewed later.
+
+The history page displays:
+
+- Problem
+- Attempt date
+- Evaluation status
+- Score
+- Feedback
+
+Each attempt can be opened to view the original submission and its evaluation.
+
+## Tech Stack
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- MongoDB
+- Mongoose
+- Google Gemini API
+
+## Project Structure
+lld-coach/
+├── app/
+│   ├── api/
+│   │   └── submissions/
+│   │       ├── route.ts
+│   │       └── [id]/
+│   │           └── evaluate/
+│   │               └── route.ts
+│   ├── history/
+│   │   └── page.tsx
+│   ├── practice/
+│   │   └── parking-lot/
+│   │       └── page.tsx
+│   ├── problems/
+│   │   └── parking-lot/
+│   │       └── page.tsx
+│   ├── submissions/
+│   │   └── [id]/
+│   │       └── page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── lib/
+│   ├── db.ts
+│   ├── evaluator.ts
+│   └── validation.ts
+├── models/
+│   └── submission.ts
+├── AI_USAGE.md
+├── package.json
+└── README.md
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Ferozhasnain1504/lld-coach
+cd lld-coach
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
+Open:
+```bash
+http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Evaluation Architecture
+The submission flow separates deterministic validation from AI-based evaluation.
+```text
+User submits LLD
+       ↓
+Backend validation
+       ↓
+Submission persisted in MongoDB
+       ↓
+Status = EVALUATING
+       ↓
+Gemini evaluation
+       ↓
+Structured evaluation result
+       ↓
+Evaluation persisted
+       ↓
+Status = COMPLETED
+       ↓
+Feedback displayed
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This separation keeps basic validation deterministic while using AI for design-quality judgment.
 
-## Learn More
+## AI Usage
+Details about the AI evaluation approach, prompt strategy, structured output, retry handling, and API usage are documented in:
 
-To learn more about Next.js, take a look at the following resources:
+```text
+AI_USAGE.md
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current Scope
+This project intentionally focuses on a working MVP rather than implementing a large number of LLD problems.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The current end-to-end flow is implemented for the Parking Lot problem.
 
-## Deploy on Vercel
+Future improvements may include:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- More LLD problems
+- Diagram submission
+- More advanced deterministic checks
+- Improved evaluation analytics
+- Authentication and user-specific attempt 
+- history
+- Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Licence
+This project was built as an internship engineering assignment.
