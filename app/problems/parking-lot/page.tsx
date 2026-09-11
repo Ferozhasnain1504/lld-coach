@@ -10,12 +10,21 @@ export default function ParkingLotPage() {
             LLD Coach
           </Link>
 
-          <Link
-            href="/"
-            className="text-sm text-slate-400 hover:text-white"
-          >
-            ← All Problems
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link
+              href="/history"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              History
+            </Link>
+
+            <Link
+              href="/"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              ← All Problems
+            </Link>
+          </div>
         </div>
       </header>
 
