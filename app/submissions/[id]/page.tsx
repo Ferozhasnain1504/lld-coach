@@ -95,16 +95,113 @@ export default async function SubmissionPage({
 
         {!evaluation ? (
           <div className="border border-slate-800 bg-slate-900 rounded-2xl p-8 text-center">
-            <h2 className="text-xl font-semibold">
-              Evaluation not available
-            </h2>
+            {submission.status === "SUBMITTED" && (
+              <>
+                <h2 className="text-xl font-semibold">
+                  Submission Received
+                </h2>
 
-            <p className="text-slate-400 mt-2">
-              This submission has not been evaluated yet.
-            </p>
+                <p className="text-slate-400 mt-2">
+                  Your design has been submitted and is waiting for evaluation.
+                </p>
+              </>
+            )}
+
+            {submission.status === "EVALUATING" && (
+              <>
+                <h2 className="text-xl font-semibold">
+                  Evaluation in Progress
+                </h2>
+
+                <p className="text-slate-400 mt-2">
+                  Your LLD design is currently being evaluated. Please check back shortly.
+                </p>
+              </>
+            )}
+
+            {submission.status === "FAILED" && (
+              <>
+                <h2 className="text-xl font-semibold">
+                  Evaluation Failed
+                </h2>
+
+                <p className="text-slate-400 mt-2">
+                  We couldn't complete the evaluation for this submission.
+                  Please try submitting your design again.
+                </p>
+
+                <Link
+                  href="/practice/parking-lot"
+                  className="inline-block mt-6 px-5 py-2 rounded-lg bg-white text-black font-medium hover:bg-slate-200"
+                >
+                  Try Again
+                </Link>
+              </>
+            )}
           </div>
         ) : (
           <div className="space-y-6">
+
+            {/* Your Submission */}
+
+            <section className="border border-slate-800 bg-slate-900 rounded-2xl p-8">
+              <h2 className="text-2xl font-bold">
+                Your Submission
+              </h2>
+
+              <p className="text-slate-400 mt-2">
+                Here's the LLD design you submitted for evaluation.
+              </p>
+
+              <div className="mt-6 space-y-6">
+
+                <div>
+                  <h3 className="font-semibold text-blue-400">
+                    Classes / Entities
+                  </h3>
+                  <p className="text-slate-300 mt-2 whitespace-pre-wrap">
+                    {submission.classes}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-blue-400">
+                    Responsibilities
+                  </h3>
+                  <p className="text-slate-300 mt-2 whitespace-pre-wrap">
+                    {submission.responsibilities}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-blue-400">
+                    Relationships
+                  </h3>
+                  <p className="text-slate-300 mt-2 whitespace-pre-wrap">
+                    {submission.relationships}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-blue-400">
+                    Assumptions / Edge Cases
+                  </h3>
+                  <p className="text-slate-300 mt-2 whitespace-pre-wrap">
+                    {submission.assumptions}
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-blue-400">
+                    Design Explanation
+                  </h3>
+                  <p className="text-slate-300 mt-2 whitespace-pre-wrap">
+                    {submission.explanation}
+                  </p>
+                </div>
+
+              </div>
+            </section>
 
             {/* Overall Score */}
 
