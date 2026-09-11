@@ -28,6 +28,10 @@ export default async function HistoryPage() {
           <p className="text-slate-400 mt-2">
             Review your previous LLD practice attempts.
           </p>
+          <p className="text-sm text-slate-500 mt-2">
+            {submissions.length}{" "}
+            {submissions.length === 1 ? "attempt" : "attempts"} recorded
+          </p>
         </div>
 
         {submissions.length === 0 ? (
